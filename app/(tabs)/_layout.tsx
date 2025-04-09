@@ -8,7 +8,7 @@ export default function RootLayout() {
     screenOptions={{
     tabBarShowLabel:true,
     tabBarLabelStyle: {
-      
+      color: '#000',
     },
     tabBarItemStyle:{
       width: '100%',
@@ -34,7 +34,7 @@ export default function RootLayout() {
     
     tabBarIcon: ({focused}: {focused : boolean}) => (
       <>
-      <Feather name="home" size={24} color={focused ? '#246bfd' : '#999'} />
+      <Feather name="home" size={24} color={focused ? '#000' : '#999'} />
       </>
     )
       
@@ -46,7 +46,7 @@ export default function RootLayout() {
       headerShown: false,
       tabBarIcon: ({focused}: {focused : boolean}) =>(
         <>
-        <Feather name="search" size={24} color={focused ? '#246bfd' : '#999'}/> 
+        <Feather name="search" size={24} color={focused ? '#000' : '#999'}/> 
         </>
       )
     }
@@ -57,7 +57,7 @@ export default function RootLayout() {
       headerShown: false,
       tabBarIcon: ({focused}: {focused : boolean}) =>(
         <>
-        <Octicons name="checklist" size={24} color={focused ? '#246bfd' : '#999'} /> 
+        <Octicons name="checklist" size={24} color={focused ? '#000' : '#999'} /> 
         </>
       )
     }
