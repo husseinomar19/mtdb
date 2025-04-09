@@ -5,7 +5,7 @@ import Octicons from '@expo/vector-icons/Octicons';
 export default function RootLayout() {
   return (
     <Tabs 
-  screenOptions={{
+    screenOptions={{
     tabBarShowLabel:true,
     tabBarLabelStyle: {
       
@@ -16,7 +16,7 @@ export default function RootLayout() {
       
     },
     tabBarStyle: {
-      backgroundColor: '#000',
+      backgroundColor: '#fff',
       borderColor: '#000',
       height: 60,
       borderRadius: 50,
@@ -34,7 +34,7 @@ export default function RootLayout() {
     
     tabBarIcon: ({focused}: {focused : boolean}) => (
       <>
-      <Feather name="home" size={24} color={focused ? '#246bfd' : '#fff'} />
+      <Feather name="home" size={24} color={focused ? '#246bfd' : '#999'} />
       </>
     )
       
@@ -46,7 +46,7 @@ export default function RootLayout() {
       headerShown: false,
       tabBarIcon: ({focused}: {focused : boolean}) =>(
         <>
-        <Feather name="search" size={24} color={focused ? '#246bfd' : '#fff'}/> 
+        <Feather name="search" size={24} color={focused ? '#246bfd' : '#999'}/> 
         </>
       )
     }
@@ -57,7 +57,7 @@ export default function RootLayout() {
       headerShown: false,
       tabBarIcon: ({focused}: {focused : boolean}) =>(
         <>
-        <Octicons name="checklist" size={24} color={focused ? '#246bfd' : '#fff'} /> 
+        <Octicons name="checklist" size={24} color={focused ? '#246bfd' : '#999'} /> 
         </>
       )
     }
