@@ -1,11 +1,11 @@
 import { Link } from "expo-router";
-import { SafeAreaView, Text, View, FlatList, Image, ActivityIndicator, TextInput, Pressable } from "react-native";
+import { SafeAreaView, Text, View, Image, ActivityIndicator, TextInput, Pressable, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import { EXPO_PUBLIC_API_KEY } from '@env';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-
+import Triend from "../../components/Triend";
 
 interface Movie {
   id: number;
@@ -31,8 +31,8 @@ export default function Index() {
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
-  
-  // De URL bepalen afhankelijk van de zoekopdracht
+
+  // Fetch data function
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -61,83 +61,78 @@ export default function Index() {
 
   useEffect(() => {
     fetchData();
-  }, [page, query]); // fetchData opnieuw uitvoeren bij verandering van query of page
+  }, [page, query]);
 
   return (
-    <SafeAreaView className="bg-black flex-1 px-2 pt-4">
-      <View className="flex-row items-center justify-between w-full pl-4 pr-5">
-        <Text className="text-white text-[30px] font-bold">Movie</Text>
-        <Image
-          source={require("../../assets/images/mtdb.png")}
-          className="w-[60px] h-[60px]"
-          resizeMode="contain"
-          alt="Logo"
-        />
-      </View>
+    <SafeAreaView className="bg-black flex-1 px-2 pt-4 justify-center items-center ">
+      <ScrollView className="w-full">
+        <View className="flex-1 justify-center items-center w-full">
+          {/* Triend Component */}
+          
 
-      {/* TextInput voor zoekopdracht */}
-      <View className="w-full pl-3 pr-5 mt-2">
-        <TextInput
-          className="bg-white rounded-[50px] pt-4 pb-4 pr-11 pl-4 relative"
-          placeholder="Search"
-          placeholderTextColor={'#000'}
-          value={query}
-          onChangeText={setQuery}
-        />
-        <Pressable
-          onPress={fetchData} // Aanroepen van fetchData bij klik op zoek-icoon
-          className="absolute top-3 right-8"
-        >
-          <EvilIcons name="search" size={30} color="black" />
-        </Pressable>
-      </View>
-
-      {/* Laadindicator tonen tijdens het ophalen van data */}
-      {loading ? (
-        <ActivityIndicator color={"white"} />
-      ) : (
-        <>
-          <Text className="text-white text-[20px] font-bold mb-2 ml-2 mt-4">Top trending movies</Text>
-          <View className="flex-1 justify-center items-center p-2">
-            <FlatList
-              data={data}
-              numColumns={3}
-              className="w-full"
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => item.id.toString()}
-              contentContainerStyle={{ alignItems: "flex-start", justifyContent: "center" }}
-              showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <Link href={`/movies/${item.id}`} className="flex justify-center items-center mb-4 gap-5">
-                  <View className="m-1 p-1">
-                    <Image
-                      source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
-                      className="w-[116px] h-[220px] rounded-md"
-                      resizeMode="cover"
-                      alt={item.name}
-                    />
-                    <Text className="text-white text-[12px] mt-1 w-[116px]" numberOfLines={1}>
-                      {item.original_title}
-                    </Text>
-                    <View className="flex-row items-center justify-between mt-1">
-                      <Text className="text-white text-[10px] mt-1">
-                        {item.release_date?.split("-")[0]}
-                      </Text>
-                      <View className="flex-row items-center justify-between gap-2">
-                        <AntDesign name="star" size={13} color="yellow" />
-                        <Text className="text-white text-[10px] mt-1">
-                          {Math.round(item.vote_average / 2)}/5
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </Link>
-              )}
+          <View className="flex-row items-center justify-between w-full px-4">
+            <Text className="text-white text-[30px] font-bold">Movie</Text>
+            <Image
+              source={require("../../assets/images/mtdb.png")}
+              className="w-[60px] h-[60px]"
+              resizeMode="contain"
+              alt="Logo"
             />
           </View>
 
-          {/* Paginatieknoppen */}
-          <View className="w-full flex-row justify-center items-center gap-2 px-4 mb-[65px] mt-2">
+          {/* Search Bar */}
+          <View className="w-full px-2 mt-2">
+            <TextInput
+              className="bg-white rounded-[50px] pt-4 pb-4 pr-11 pl-4 relative"
+              placeholder="Search"
+              placeholderTextColor={'#000'}
+              value={query}
+              onChangeText={setQuery}
+            />
+            <Pressable
+              onPress={fetchData}
+              className="absolute top-3 right-8"
+            >
+              <EvilIcons name="search" size={30} color="black" />
+            </Pressable>
+          </View>
+
+          {/* Trending Movies */}
+          <Text className="text-white text-[20px] font-bold mb-2 ml-3 mt-4 self-start">Top trending movies</Text>
+
+          {/* Map function to render movies */}
+          <View className="flex-row flex-wrap justify-start w-full px-4">
+            {data.map((item) => (
+              <Link key={item.id} href={`/movies/${item.id}`} className="flex justify-center items-center mb-4 gap-5 w-1/3 px-1">
+                <View className="m-1 p-1">
+                  <Image
+                    source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
+                    className="w-[116px] h-[220px] rounded-md"
+                    resizeMode="cover"
+                    alt={item.name}
+                  />
+                  <Text className="text-white text-[12px] mt-1 w-[116px]" numberOfLines={1}>
+                    {item.original_title}
+                  </Text>
+                  <View className="flex-row items-center justify-between mt-1">
+                    <Text className="text-white text-[10px] mt-1">
+                      {item.release_date?.split("-")[0]}
+                    </Text>
+                    <View className="flex-row items-center justify-between gap-2">
+                      <AntDesign name="star" size={13} color="yellow" />
+                      <Text className="text-white text-[10px] mt-1">
+                        {Math.round(item.vote_average / 2)}/5
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </Link>
+            ))}
+          </View>
+
+          {/* Pagination Buttons */}
+          <View className="w-full flex-row justify-between items-center gap-2 px-4 mt-4">
+            <View className="flex-row items-center justify-center">
             <Pressable
               onPress={() => setPage(page - 1)}
               disabled={page === 1}
@@ -152,12 +147,18 @@ export default function Index() {
                 <MaterialIcons name="navigate-next" size={30} color="white" />
               </Text>
             </Pressable>
+            </View>
+            <Text className="text-white mr-1">page : {page}</Text>
           </View>
-        </>
-      )}
 
-      {/* Errormelding als er iets mis is */}
-      {error && <Text className="text-red-500 absolute top-2/4 text-center p-3">{error}</Text>}
+          {/* Loading Indicator */}
+          {loading && <ActivityIndicator color="white" className="absolute top-1/2 left-1/2" />}
+
+          {/* Error Message */}
+          {error && <Text className="text-red-500 absolute top-2/4 text-center p-3">{error}</Text>}
+          <Triend />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
