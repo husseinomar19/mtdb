@@ -7,20 +7,23 @@
     "icon": "./assets/images/mtdb.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "image": "./assets/images/mtdb.png",
+      "imageWidth": 200,
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/mtdb.png",
-        "backgroundColor": "#231934"
+        "backgroundColor": "#000000"
       }
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+    "splash": {
+      "image": "./assets/images/mtdb.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
     },
     "plugins": [
       "expo-router",
@@ -30,7 +33,7 @@
           "image": "./assets/images/mtdb.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#231934"
+          "backgroundColor": "#000000"
         }
       ]
     ],
