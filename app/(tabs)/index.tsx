@@ -132,19 +132,19 @@ export default function Index() {
 
           {/* Pagination Buttons */}
           <View className="w-full flex-row justify-between items-center gap-2 px-4 mt-4">
-            <View className="flex-row items-center justify-center">
+            <View className="flex-row items-center justify-center gap-2">
             <Pressable
               onPress={() => setPage(page - 1)}
               disabled={page === 1}
               style={{ opacity: page === 1 ? 0.5 : 1 }}
             >
-              <Text className="p-2">
-                <MaterialIcons name="navigate-before" size={30} color="white" />
+              <Text className="p-1 bg-white rounded-full">
+                <MaterialIcons name="navigate-before" size={30} color="black" />
               </Text>
             </Pressable>
             <Pressable onPress={() => setPage(page + 1)}>
-              <Text className="p-2">
-                <MaterialIcons name="navigate-next" size={30} color="white" />
+              <Text className="p-1 bg-white rounded-full">
+                <MaterialIcons name="navigate-next" size={30} color="black" />
               </Text>
             </Pressable>
             </View>

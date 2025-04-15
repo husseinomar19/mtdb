@@ -1,7 +1,9 @@
 
 import { Tabs } from "expo-router";
+import { Pressable, View} from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import Octicons from '@expo/vector-icons/Octicons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 export default function RootLayout() {
   return (
     <Tabs 
@@ -28,6 +30,30 @@ export default function RootLayout() {
     }
   }}
   >
+    <Tabs.Screen name="search" options={
+    {title: "Settings",
+      tabBarIconStyle: {
+        marginLeft:5,
+        opacity: 0.5,
+      },
+      tabBarLabelStyle: {
+        opacity: 0.5,
+      },
+
+      headerShown: false,
+      tabBarIcon: ({focused}: {focused : boolean}) =>(
+        <>
+        <AntDesign name="user" size={24} color={focused ? '#000' : '#999'} />
+        </>
+      ),
+      tabBarButton: (props) => (
+        <Pressable disabled={true} style={props.style}>
+          <View>{props.children}</View>
+        </Pressable>
+      ),
+    }
+  } />
+
   <Tabs.Screen name="index" options={
     {title: "Home",
     headerShown: false,
@@ -40,26 +66,28 @@ export default function RootLayout() {
       
     }
   } />
-   <Tabs.Screen name="search" options={
-    {title: "search",
-      
-      headerShown: false,
-      tabBarIcon: ({focused}: {focused : boolean}) =>(
-        <>
-        <Feather name="search" size={24} color={focused ? '#000' : '#999'}/> 
-        </>
-      )
-    }
-  } />
+   
   <Tabs.Screen name="save" options={
     {title: "save",
-      
+      tabBarIconStyle: {
+        marginLeft:5,
+        opacity: 0.5,
+      },
+      tabBarLabelStyle: {
+        opacity: 0.5,
+      },
       headerShown: false,
       tabBarIcon: ({focused}: {focused : boolean}) =>(
         <>
         <Octicons name="checklist" size={24} color={focused ? '#000' : '#999'} /> 
         </>
-      )
+      ),
+      tabBarButton: (props) => (
+        <Pressable disabled={true} style={props.style}>
+          <View>{props.children}</View>
+        </Pressable>
+      ),
+      
     }
   } />
  </Tabs>
