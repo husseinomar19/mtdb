@@ -49,6 +49,9 @@ export default function Index() {
       };
 
       const res = await fetch(baseUrl, options);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
       const json = await res.json();
       setData(json.results);
     } catch (error) {
