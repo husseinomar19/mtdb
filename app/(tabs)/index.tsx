@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { SafeAreaView, Text, View, Image, ActivityIndicator, TextInput, Pressable, ScrollView } from "react-native";
+import { SafeAreaView, Text, View, Image, ActivityIndicator, TextInput, Pressable, ScrollView ,Platform } from "react-native";
 import { useState, useEffect } from "react";
 import { EXPO_PUBLIC_API_KEY } from '@env';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -104,13 +104,13 @@ export default function Index() {
           <Text className="text-white text-[20px] font-bold mb-2 ml-3 mt-4 self-start">Top trending movies</Text>
 
           {/* Map function to render movies */}
-          <View className="flex-row flex-wrap justify-start w-full px-4">
+          <View className={`flex-row flex-wrap justify-start w-full ${Platform.OS === "ios" ? 'px-2' : ''}`}>
             {data.map((item) => (
               <Link key={item.id} href={`/movies/${item.id}`} className="flex justify-center items-center mb-4 gap-5 w-1/3 px-1">
                 <View className="m-1 p-1">
                   <Image
                     source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
-                    className="w-[116px] h-[220px] rounded-md"
+                    className={`${Platform.OS === "ios" ? 'w-[116px]' : 'w-[110px]'} h-[220px] rounded-md`}
                     resizeMode="cover"
                     alt={item.name}
                   />
