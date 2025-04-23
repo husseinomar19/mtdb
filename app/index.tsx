@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { SafeAreaView, Text, View, Image, Pressable, TextInput, ScrollView } from "react-native";
+import { SafeAreaView, Text, View, Image, Pressable, TextInput, ScrollView , ActivityIndicator} from "react-native";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
@@ -8,9 +8,12 @@ export default function Index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // 👈 loading state
   const [isRegistering, setIsRegistering] = useState(false); // 👈 toggle tussen login/register
 
   const handleSubmit = async () => {
+    setError(""); // Reset error message
+    setIsLoading(true); // Set loading state to true
     try {
       if (isRegistering) {
         await createUserWithEmailAndPassword(auth, email, password);
@@ -21,6 +24,8 @@ export default function Index() {
     } catch (e: any) {
       setError("Fout: " + e.message);
       console.log(e);
+    }finally{
+    setIsLoading(false); // Set loading state to false after the operation
     }
   };
 
@@ -61,7 +66,11 @@ export default function Index() {
                 {isRegistering ? "Registreren" : "Inloggen"}
               </Text>
             </Pressable>
+           
+            {/* Error message */}
             {error ? <Text style={{ color: "red", marginTop: 10 }}>{error}</Text> : null}
+
+            
           </View>
 
           {/* TOGGLE BUTTON */}
@@ -73,6 +82,14 @@ export default function Index() {
             </Text>
           </Pressable>
         </View>
+       
+
+       {isLoading ? (
+          <View className="flex-1 justify-center items-center w-full h-full">
+            <ActivityIndicator size="large" color="#fff" />
+          </View>
+          ) : null}
+        
       </ScrollView>
     </SafeAreaView>
   );

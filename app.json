@@ -3,6 +3,7 @@
     "name": "MTDB",
     "slug": "mtdb",
     "version": "1.0.0",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/images/mtdb.png",
     "scheme": "myapp",
