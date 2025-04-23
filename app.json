@@ -13,7 +13,8 @@
       "image": "./assets/images/mtdb.png",
       "imageWidth": 200,
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#000000",
+      "bundleIdentifier": "com.husseinomar.mtdb"
     },
     "android": {
       "adaptiveIcon": {

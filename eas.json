@@ -1,28 +1,21 @@
 {
+  "cli": {
+    "version": ">= 16.3.2",
+    "appVersionSource": "remote"
+  },
   "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
     "preview": {
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "preview2": {
-      "android": {
-        "gradleCommand": ":app:assembleRelease"
-      }
-    },
-    "preview3": {
-      "developmentClient": true
-    },
-    "preview4": {
       "distribution": "internal"
     },
     "production": {
-      "android": {
-        "buildType": "apk"
-      },
-      "env": {
-        "EXPO_PUBLIC_API_KEY": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMDQ2YWJlNzQwMDExMWEyZmRjNGNlYzAyZDFlOGU4OCIsIm5iZiI6MTc0Mzc1NjgwNy43NTMsInN1YiI6IjY3ZWY5ZTA3NDhkNmYwMzFiMGFjZmE4YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9Ngr0XcBCZS_8cu2av4BxSYoMD7tg8345PPsdCkatno"
-      }
+      "autoIncrement": true
     }
+  },
+  "submit": {
+    "production": {}
   }
 }
