@@ -54,7 +54,7 @@ export default function RootLayout() {
     }
   } />
 
-  <Tabs.Screen name="index" options={
+  <Tabs.Screen name="home" options={
     {title: "Home",
     headerShown: false,
     
