@@ -1,20 +1,27 @@
-// index.tsx
-
 import React, { useEffect, useState } from 'react';
 import { Button, View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
+import * as AuthSession from 'expo-auth-session';
 import { auth, GoogleAuthProvider } from '../firebase';
 import { signInWithCredential, onAuthStateChanged, signOut } from 'firebase/auth';
 import type { User } from 'firebase/auth';
 
+// Zorg dat Expo auth sessies kan afronden
 WebBrowser.maybeCompleteAuthSession();
+
+// Maak hier de redirectUri aan
+const redirectUri = AuthSession.makeRedirectUri({
+  scheme: 'myapp',
+});
+console.log('Redirect URI:', redirectUri);
 
 export default function App() {
   const [request, response, promptAsync] = Google.useAuthRequest({
-    iosClientId: '509748891458-f3c4bo0inoomme50nl7v7rhsl73o6qc4.apps.googleusercontent.com',
-    androidClientId: '509748891458-d65hpklbmenb38334r7u35p0d58v0e5p.apps.googleusercontent.com',
-    webClientId : '509748891458-50qne7oqes4h54nb7cqp76vnkrljsop8.apps.googleusercontent.com',
+    iosClientId: '',
+    androidClientId: '',
+    webClientId: '',
+    redirectUri, // ← toegevoegd
   });
 
   const [loading, setLoading] = useState(true);
@@ -68,14 +75,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
+  title: { fontSize: 24, marginBottom: 20 },
 });
