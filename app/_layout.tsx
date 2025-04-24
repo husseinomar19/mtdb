@@ -3,7 +3,7 @@ import "./global.css"
 import Login from "../components/login"
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo'
 import { tokenCache } from '@clerk/clerk-expo/token-cache'
-import {EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} from '@env'
+import {EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} from '@env';
 export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache} >
