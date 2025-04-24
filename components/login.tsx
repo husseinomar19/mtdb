@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View ,Image} from "react-native";
 import * as WebBrowser from 'expo-web-browser'
 import React, { useCallback, useEffect } from 'react'
 import * as AuthSession from 'expo-auth-session'
@@ -72,11 +72,13 @@ export default function Login() {
 
     return(
         <>
-        <SafeAreaView className="flex-1 bg-black justify-center items-center">
+        <SafeAreaView className="flex-1 bg-black justify-center items-center p-2">
 
-           
-                <Pressable className="bg-blue-500 p-2 rounded-full mr-2" onPress={onPress}>
-                    <Text className="text-white">Login with Google</Text>
+                <Image
+                source={require('../assets/images/mtdb.png')}
+                />
+                <Pressable className="bg-white rounded-full" onPress={onPress} style={{ width: 300, height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text className="text-black p-5">Login with Google</Text>
                 </Pressable>
 
             

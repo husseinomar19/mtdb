@@ -8,7 +8,6 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache} >
       <SignedIn>
-
       <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="movies/[id]" options={{ headerShown: false }} />

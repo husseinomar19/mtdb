@@ -1,6 +1,5 @@
 
 import { Tabs } from "expo-router";
-import { Pressable, View} from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import Octicons from '@expo/vector-icons/Octicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -9,89 +8,63 @@ export default function RootLayout() {
     <Tabs 
     screenOptions={{
     tabBarShowLabel:true,
+    
     tabBarLabelStyle: {
       color: '#000',
     },
     tabBarItemStyle:{
+      height	: '100%',
       width: '100%',
-      height: '100%',
-      
     },
     tabBarStyle: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 55,
       backgroundColor: '#fff',
       borderColor: '#000',
-      height: 60,
-      borderRadius: 50,
-      margin: 10,
       position: 'absolute',
-      bottom: 20, 
+      borderRadius: 50,
+      margin: 20,
+      bottom: 10, 
       zIndex: 100,    
-
     }
   }}
   >
-     <Tabs.Screen name="index" options={
+  <Tabs.Screen name="index" options={
     {title: "Home",
     headerShown: false,
-    
     tabBarIcon: ({focused}: {focused : boolean}) => (
       <>
       <Feather name="home" size={24} color={focused ? '#000' : '#999'} />
+      </>
+    )    
+    }
+  } />
+
+<Tabs.Screen name="search" options={
+    {title: "Profile",
+    headerShown: false,
+    tabBarIcon: ({focused}: {focused : boolean}) => (
+      <>
+      <AntDesign name="user" size={24} color={focused ? '#000' : '#999'} />
       </>
     )
       
     }
   } />
-  
-    <Tabs.Screen name="search" options={
-    {title: "Settings",
-      tabBarIconStyle: {
-        marginLeft:5,
-        opacity: 0.5,
-      },
-      tabBarLabelStyle: {
-        opacity: 0.5,
-      },
 
-      headerShown: false,
-      tabBarIcon: ({focused}: {focused : boolean}) =>(
-        <>
-        <AntDesign name="user" size={24} color={focused ? '#000' : '#999'} />
-        </>
-      ),
-      tabBarButton: (props) => (
-        <Pressable disabled={true} style={props.style}>
-          <View>{props.children}</View>
-        </Pressable>
-      ),
+<Tabs.Screen name="save" options={
+    {title: "Save",
+    headerShown: false,
+    tabBarIcon: ({focused}: {focused : boolean}) => (
+      <>
+      <Octicons name="checklist" size={24} color={focused ? '#000' : '#999'} /> 
+      </>
+    )   
     }
   } />
-
- 
-   
-  <Tabs.Screen name="save" options={
-    {title: "save",
-      tabBarIconStyle: {
-        marginLeft:5,
-        opacity: 0.5,
-      },
-      tabBarLabelStyle: {
-        opacity: 0.5,
-      },
-      headerShown: false,
-      tabBarIcon: ({focused}: {focused : boolean}) =>(
-        <>
-        <Octicons name="checklist" size={24} color={focused ? '#000' : '#999'} /> 
-        </>
-      ),
-      tabBarButton: (props) => (
-        <Pressable disabled={true} style={props.style}>
-          <View>{props.children}</View>
-        </Pressable>
-      ),
-      
-    }
-  } />
+    
  </Tabs>
   )
 }
