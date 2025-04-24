@@ -6,6 +6,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Triend from "../../components/Triend";
+import {useSignOutHandler} from "../../components/login"
 
 interface Movie {
   id: number;
@@ -31,6 +32,8 @@ export default function Index() {
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
+
+  const signOut = useSignOutHandler()
 
   // Fetch data function
   const fetchData = async () => {
@@ -81,6 +84,9 @@ export default function Index() {
               resizeMode="contain"
               alt="Logo"
             />
+            <Pressable onPress={signOut} className="bg-white px-6 py-3 rounded-full">
+              <Text className="text-black">Logout</Text>
+            </Pressable>
           </View>
 
           {/* Search Bar */}

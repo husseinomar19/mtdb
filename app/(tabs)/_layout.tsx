@@ -30,6 +30,19 @@ export default function RootLayout() {
     }
   }}
   >
+     <Tabs.Screen name="index" options={
+    {title: "Home",
+    headerShown: false,
+    
+    tabBarIcon: ({focused}: {focused : boolean}) => (
+      <>
+      <Feather name="home" size={24} color={focused ? '#000' : '#999'} />
+      </>
+    )
+      
+    }
+  } />
+  
     <Tabs.Screen name="search" options={
     {title: "Settings",
       tabBarIconStyle: {
@@ -54,18 +67,7 @@ export default function RootLayout() {
     }
   } />
 
-  <Tabs.Screen name="home" options={
-    {title: "Home",
-    headerShown: false,
-    
-    tabBarIcon: ({focused}: {focused : boolean}) => (
-      <>
-      <Feather name="home" size={24} color={focused ? '#000' : '#999'} />
-      </>
-    )
-      
-    }
-  } />
+ 
    
   <Tabs.Screen name="save" options={
     {title: "save",
