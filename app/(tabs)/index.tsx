@@ -7,6 +7,7 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Triend from "../../components/Triend";
 import {useSignOutHandler} from "../../components/login"
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 
 interface Movie {
   id: number;
@@ -84,8 +85,8 @@ export default function Index() {
               resizeMode="contain"
               alt="Logo"
             />
-            <Pressable onPress={signOut} className="bg-white px-6 py-3 rounded-full">
-              <Text className="text-black">Logout</Text>
+            <Pressable onPress={signOut} className="bg-white p-3 rounded-full flex-row items-center justify-center gap-2" style={{ width: 90}}>
+              <SimpleLineIcons name="logout" size={15} color="black" />
             </Pressable>
           </View>
 
